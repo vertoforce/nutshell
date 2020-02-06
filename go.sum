@@ -1,0 +1,8 @@
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/powerman/rpc-codec v1.1.3 h1:02F+Zn/Z/5/aCqiB1RrwMDq+yIZ/VDY3NBIfdVOAYQs=
+github.com/powerman/rpc-codec v1.1.3/go.mod h1:3Qr/y/+u3CwcSww9tfJMRn/95lB2qUdUeIQe7BYlLDo=
+github.com/seanhagen/rpc-codec v1.1.5 h1:KDd5sdx5PXCbenBqVxfCRzhMXLtAsEcHztF10MqluHI=
+github.com/seanhagen/rpc-codec v1.1.5/go.mod h1:L8MqZ8EfBVOjIwY3n1W8GWb3lJ/N9OtenQbE/gS/tR8=
+github.com/ybbus/jsonrpc v2.1.2+incompatible h1:V4mkE9qhbDQ92/MLMIhlhMSbz8jNXdagC3xBR5NDwaQ=
+github.com/ybbus/jsonrpc v2.1.2+incompatible/go.mod h1:XJrh1eMSzdIYFbM08flv0wp5G35eRniyeGut1z+LSiE=
