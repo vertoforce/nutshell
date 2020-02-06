@@ -1,7 +1,5 @@
 package nutshell
 
-import "fmt"
-
 // API uses 'Contact' to refer to 'People'
 
 // UpsertContact is used in `CreateContact` or `EditContact`
@@ -21,16 +19,21 @@ type UpsertContact struct {
 
 // Contact represents a contact ( aka "Person" ) in Nutshell
 type Contact struct {
-	Stub
-
-	HtmlURL     string   `json:"htmlUrl,omitempty"`
-	Description string   `json:"description,omitempty"`
-	Tags        []string `json:"tags,omitempty"`
-	Creator     Creator  `json:"creator,omitempty"`
+	Stub       bool   `json:"stub"`
+	ID         int    `json:"id"`
+	Rev        string `json:"rev"`
+	EntityType string `json:"entityType"`
+	// Name is sometimes returned as a single string and sometimes
+	// as a map[string]string
+	Name           interface{} `json:"name,omitempty"`
+	HtmlURL        string      `json:"htmlUrl,omitempty"`
+	Description    string      `json:"description,omitempty"`
+	Tags           []string    `json:"tags,omitempty"`
+	Creator        Creator     `json:"creator,omitempty"`
+	ContactedCount int         `json:"contactedCount,omitempty"`
 
 	Leads             LeadsList          `json:"leads,omitempty"`
 	Accounts          AccountsList       `json:"accounts,omitempty"`
-	ContactedCount    int                `json:"contactedCount,omitempty"`
 	Address           map[string]Address `json:"address,omitempty"`
 	Phone             map[string]Phone   `json:"phone,omitempty"`
 	URL               map[string]string  `json:"url,omitempty"`
@@ -46,22 +49,12 @@ type Contact struct {
 
 type ContactsList []Contact
 
-// GetContact ...
-func (c *Client) GetContact(id int) (*Contact, error) {
-	con := &Contact{}
-
-	// out := map[string]interface{}{}
-	// err := c.rpc.Call("getContact", map[string]interface{}{"contactId": id}, &out)
-	err := c.rpc.Call("getContact", map[string]interface{}{"contactId": id}, con)
-	if err != nil {
-		return nil, err
+// HasEmail ...
+func (c Contact) HasEmail(e string) bool {
+	for _, ee := range c.Email {
+		if ee == e {
+			return true
+		}
 	}
-	// spew.Dump(out)
-
-	return con, nil
-}
-
-// NewContact ...
-func (c *Client) NewContact(nc UpsertContact) (*Contact, error) {
-	return nil, fmt.Errorf("not yet")
+	return false
 }
