@@ -1,18 +1,22 @@
 package nutshell
 
 type Stub struct {
-	Stub       bool   `json:"stub"`
-	ID         int    `json:"id"`
-	Rev        string `json:"rev"`
-	EntityType string `json:"entityType"`
-	Name       string `json:"name"`
+	Stub       bool   `json:"stub,omitempty"`
+	ID         int    `json:"id,omitempty"`
+	Rev        string `json:"rev,omitempty"`
+	EntityType string `json:"entityType,omitempty"`
+	Name       string `json:"name,omitempty"`
 }
+
+type StubList []Stub
 
 type Phone struct {
 	CountryCode string      `json:"countryCode,omitempty"`
 	Number      string      `json:"number,omitempty"`
 	Extension   interface{} `json:"extension,omitempty"`
 }
+
+type PhoneList map[string]Phone
 
 type Territory struct {
 	ID   int    `json:"id,omitempty"`

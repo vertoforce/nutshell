@@ -15,6 +15,8 @@ type UpsertContact struct {
 
 	TerritoryId string     `json:"territory_id,omitempty"`
 	Owner       *OwnerLink `json:"owner,omitempty"`
+
+	Tags TagsList `json:"tags,omitempty"`
 }
 
 // Contact represents a contact ( aka "Person" ) in Nutshell
@@ -28,7 +30,7 @@ type Contact struct {
 	Name           interface{} `json:"name,omitempty"`
 	HtmlURL        string      `json:"htmlUrl,omitempty"`
 	Description    string      `json:"description,omitempty"`
-	Tags           []string    `json:"tags,omitempty"`
+	Tags           TagsList    `json:"tags,omitempty"`
 	Creator        Creator     `json:"creator,omitempty"`
 	ContactedCount int         `json:"contactedCount,omitempty"`
 
@@ -41,13 +43,20 @@ type Contact struct {
 	Notes             NotesList          `json:"notes,omitempty"`
 	Avatar            map[string]string  `json:"avatar,omitempty"`
 	Territory         Territory          `json:"territory,omitempty"`
-	LastContactedDate interface{}        `json:"lastContactedDate,omitempty"`
+	LastContactedDate string             `json:"lastContactedDate,omitempty"`
 	DeletedTime       string             `json:"deletedTime,omitempty"`
 	ModifiedTime      string             `json:"modifiedTime,omitempty"`
 	CreatedTime       string             `json:"createdTime,omitempty"`
 }
 
 type ContactsList []Contact
+
+type FindContactQuery struct {
+	AccountId *int  `json:"account_id,omitempty"`
+	LeadId    *int  `json:"lead_id,omitempty"`
+	Territory []int `json:"territory,omitempty"`
+	Tag       []Tag `json:"tag,omitempty"`
+}
 
 // HasEmail ...
 func (c Contact) HasEmail(e string) bool {
