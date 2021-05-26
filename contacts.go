@@ -28,20 +28,20 @@ type Contact struct {
 	Tags        []string `json:"tags,omitempty"`
 	Creator     Creator  `json:"creator,omitempty"`
 
-	Leads             LeadsList          `json:"leads,omitempty"`
-	Accounts          AccountsList       `json:"accounts,omitempty"`
-	ContactedCount    int                `json:"contactedCount,omitempty"`
-	Address           map[string]Address `json:"address,omitempty"`
-	Phone             map[string]Phone   `json:"phone,omitempty"`
-	URL               map[string]string  `json:"url,omitempty"`
-	Email             map[string]string  `json:"email,omitempty"`
-	Notes             NotesList          `json:"notes,omitempty"`
-	Avatar            map[string]string  `json:"avatar,omitempty"`
-	Territory         Territory          `json:"territory,omitempty"`
-	LastContactedDate interface{}        `json:"lastContactedDate,omitempty"`
-	DeletedTime       string             `json:"deletedTime,omitempty"`
-	ModifiedTime      string             `json:"modifiedTime,omitempty"`
-	CreatedTime       string             `json:"createdTime,omitempty"`
+	Leads          LeadsList          `json:"leads,omitempty"`
+	Accounts       AccountsList       `json:"accounts,omitempty"`
+	ContactedCount int                `json:"contactedCount,omitempty"`
+	Address        map[string]Address `json:"address,omitempty"`
+	Phone          map[string]Phone   `json:"phone,omitempty"`
+	URL            map[string]string  `json:"url,omitempty"`
+	Email          map[string]string  `json:"email,omitempty"`
+	Notes          NotesList          `json:"notes,omitempty"`
+	Avatar         map[string]string  `json:"avatar,omitempty"`
+	// Territory         Territory          `json:"territory,omitempty"`
+	LastContactedDate interface{} `json:"lastContactedDate,omitempty"`
+	DeletedTime       string      `json:"deletedTime,omitempty"`
+	ModifiedTime      string      `json:"modifiedTime,omitempty"`
+	CreatedTime       string      `json:"createdTime,omitempty"`
 }
 
 type ContactsList []Contact

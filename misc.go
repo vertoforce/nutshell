@@ -1,11 +1,11 @@
 package nutshell
 
 type Stub struct {
-	Stub       bool   `json:"stub"`
-	ID         int    `json:"id"`
-	Rev        string `json:"rev"`
-	EntityType string `json:"entityType"`
-	Name       string `json:"name"`
+	Stub       bool        `json:"stub"`
+	ID         int         `json:"id"`
+	Rev        string      `json:"rev"`
+	EntityType string      `json:"entityType"`
+	Name       interface{} `json:"name"`
 }
 
 type Phone struct {
@@ -15,8 +15,8 @@ type Phone struct {
 }
 
 type Territory struct {
-	ID   int    `json:"id,omitempty"`
-	Name string `json:"name,omitempty"`
+	ID   interface{} `json:"id,omitempty"`
+	Name string      `json:"name,omitempty"`
 }
 
 type Name struct {
