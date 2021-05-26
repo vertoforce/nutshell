@@ -3,6 +3,7 @@ package nutshell
 import (
 	"encoding/json"
 	"fmt"
+	"strconv"
 )
 
 type isCustomField interface {
@@ -11,6 +12,59 @@ type isCustomField interface {
 
 type CustomFields map[string]interface{}
 type UpsertCustomFields map[string]isCustomField
+
+func (cf CustomFields) GetStringSlice(name string) []string {
+	iSlice := cf.GetSlice(name)
+
+	ret := []string{}
+	for _, i := range iSlice {
+		ret = append(ret, fmt.Sprintf("%s", i))
+	}
+
+	return ret
+}
+
+func (cf CustomFields) GetSlice(name string) []interface{} {
+	t, ok := cf[name]
+	if !ok {
+		return nil
+	}
+
+	ret, ok := t.([]interface{})
+	if !ok {
+		return nil
+	}
+
+	return ret
+}
+
+func (cf CustomFields) GetString(name string) string {
+	t, ok := cf[name]
+	if !ok {
+		return ""
+	}
+
+	ret, ok := t.(string)
+	if !ok {
+		return ""
+	}
+
+	return ret
+}
+
+func (cf CustomFields) GetFloat64(name string) float64 {
+	strVal := cf.GetString(name)
+	if strVal == "" {
+		return 0
+	}
+
+	ret, err := strconv.ParseFloat(strVal, 64)
+	if err != nil {
+		return 0
+	}
+
+	return ret
+}
 
 // get ...
 func (cf CustomFields) get(name string, out isCustomField) error {
