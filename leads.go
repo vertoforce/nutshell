@@ -102,6 +102,16 @@ func (c *Client) GetLead(id int) (*Lead, error) {
 	return l, nil
 }
 
+// GetLead ...
+func (c *Client) GetLeads() ([]Lead, error) {
+	l := []Lead{}
+	err := c.rpc.Call("searchLeads", map[string]interface{}{"string": ""}, &l)
+	if err != nil {
+		return nil, err
+	}
+	return l, nil
+}
+
 // NewLead ...
 func (c *Client) NewLead(nl UpsertLead) (*Lead, error) {
 	return nil, fmt.Errorf("nope")
