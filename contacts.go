@@ -38,10 +38,11 @@ type Contact struct {
 	Notes          NotesList          `json:"notes,omitempty"`
 	Avatar         map[string]string  `json:"avatar,omitempty"`
 	// Territory         Territory          `json:"territory,omitempty"`
-	LastContactedDate interface{} `json:"lastContactedDate,omitempty"`
-	DeletedTime       string      `json:"deletedTime,omitempty"`
-	ModifiedTime      string      `json:"modifiedTime,omitempty"`
-	CreatedTime       string      `json:"createdTime,omitempty"`
+	LastContactedDate interface{}            `json:"lastContactedDate,omitempty"`
+	DeletedTime       string                 `json:"deletedTime,omitempty"`
+	ModifiedTime      string                 `json:"modifiedTime,omitempty"`
+	CreatedTime       string                 `json:"createdTime,omitempty"`
+	CustomFields      map[string]interface{} `json:"customFields"`
 }
 
 type ContactsList []Contact
@@ -53,6 +54,21 @@ func (c *Client) GetContact(id int) (*Contact, error) {
 	// out := map[string]interface{}{}
 	// err := c.rpc.Call("getContact", map[string]interface{}{"contactId": id}, &out)
 	err := c.rpc.Call("getContact", map[string]interface{}{"contactId": id}, con)
+	if err != nil {
+		return nil, err
+	}
+	// spew.Dump(out)
+
+	return con, nil
+}
+
+// GetContact ...
+func (c *Client) FindContacts(query map[string]interface{}) (*Contact, error) {
+	con := &Contact{}
+
+	// out := map[string]interface{}{}
+	// err := c.rpc.Call("getContact", map[string]interface{}{"contactId": id}, &out)
+	err := c.rpc.Call("findContacts", map[string]interface{}{"query": query}, con)
 	if err != nil {
 		return nil, err
 	}

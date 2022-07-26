@@ -116,3 +116,12 @@ func (c *Client) GetLeads() ([]Lead, error) {
 func (c *Client) NewLead(nl UpsertLead) (*Lead, error) {
 	return nil, fmt.Errorf("nope")
 }
+
+func (c *Client) FindLeads(number int64) ([]Lead, error) {
+	l := []Lead{}
+	err := c.rpc.Call("findLeads", map[string]interface{}{"query": map[string]interface{}{"number": number}}, &l)
+	if err != nil {
+		return nil, err
+	}
+	return l, nil
+}
